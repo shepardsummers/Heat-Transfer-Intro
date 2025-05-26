@@ -11,6 +11,7 @@ Ksi=[0 1 0 -1  0 1  -1  -1  1;...
 w=[0 1/6 1/6 1/6 1/6 1/12 1/12 1/12 1/12]; % Weights for D2Q9
 c_s=1/sqrt(3); % Speed of Sound for D2Q9
 Tau=0.8; % Relaxation Time
+
 %% Initialization
 Rho_ref=2;
 R = 8.314;
@@ -29,6 +30,7 @@ end
 g_new=g;
 g_eq=g;
 
+%% Timer
 Timer = 500;
 tic;
 %% Solving
@@ -162,13 +164,13 @@ end
 % T calculation
 T = sum(g_new, 1)/R./Rho;
 
-% % g_eq calculation
-% for j=1:N_y
-%     for i=1:N_x
-%         g_eq(:,j,i) = eqm_t_d2q9(squeeze(Rho(1,j,i)),squeeze(T(1,j,i)));
-%     end
-% end
-g_eq_d2q9 = w'.*Rho*R.*T;
+% g_eq calculation
+for j=1:N_y
+    for i=1:N_x
+        g_eq(:,j,i) = eqm_t_d2q9(squeeze(Rho(1,j,i)),squeeze(T(1,j,i)));
+    end
+end
+%g_eq_d2q9 = w'.*Rho*R.*T;
 
 % BGK Collision & Update
 g = g_new - (g_new - g_eq)/Tau;
