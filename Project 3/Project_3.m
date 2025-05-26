@@ -1,7 +1,7 @@
 clear, clc;
 %% Defination of Parameters
 % Domain Related
-N_x = 120;
+N_x = 200;
 N_y = N_x;
 dx = 1;
 dy = 1;

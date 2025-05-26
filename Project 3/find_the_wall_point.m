@@ -31,6 +31,8 @@ while abs(R_w-R)>=epsilon
     i=i+1;
     R_w;
     if x_high == x_low && y_high == y_low && i > 100
+        x_w = x_high;
+        y_w = y_high;
         break;
     end
 end
